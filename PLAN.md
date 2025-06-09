@@ -25,3 +25,16 @@ A proposed Astro plugin will allow Drupal Single Directory Components (SDCs) wri
    - Add tests covering build and runtime scenarios to ensure loader paths resolve correctly.
 8. **Documentation**
    - Document installation, configuration options, and any limitations.
+
+## Progress
+### Step 1: Research existing tooling
+- Explored the `twig` npm package for template rendering.
+- Identified `drupal-twig-extensions` to replicate Drupal specific filters.
+
+### Step 2: Create an Astro integration skeleton
+- Added an `astro-twig` package with ESM `package.json`.
+- Implemented an integration that registers Astro hooks and exposes a `render` method.
+
+### Step 3: Implement a Twig loader
+- Created `DrupalTwigLoader` to resolve templates relative to component roots and lookup paths.
+- Registered a custom `drupal` loader with Twig so includes and extends work like in Drupal.

@@ -1,4 +1,9 @@
 ---
-import Card from '../../components/card.twig';
+import Card from '../../components/card/card.twig';
+import Button from '../../components/button/button.twig';
+const button = await Button({ label: 'Click', url: '#' });
 ---
-<Card title="Hello" />
+<Card title="Hello" body="World">
+  <span slot="header">{button}</span>
+  <span slot="footer">Footer text</span>
+</Card>

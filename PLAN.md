@@ -25,6 +25,9 @@ A proposed Astro plugin will allow Drupal Single Directory Components (SDCs) wri
    - Add tests covering build and runtime scenarios to ensure loader paths resolve correctly.
 8. **Documentation**
    - Document installation, configuration options, and any limitations.
+9. **Nested SDC invocation**
+   - Allow one SDC to call another directly, enabling components to be rendered
+     from within Twig templates rather than solely through slot content.
 
 ## Progress
 ### Step 1: Research existing tooling

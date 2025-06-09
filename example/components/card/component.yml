@@ -1,0 +1,13 @@
+props:
+  title:
+    type: string
+  body:
+    type: string
+slots:
+  header: {}
+  footer: {}
+libraries:
+  css:
+    - card.css
+  js:
+    - card.js

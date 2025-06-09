@@ -21,10 +21,16 @@ export default function astroTwig(options = {}) {
         });
       },
     },
-    async render({ filename, data }) {
-      const tpl = await loader.load(filename);
-      const compiled = Twig.twig({ data: tpl, path: filename });
-      return compiled.render(data);
+    async render({ filename, props = {}, slots = {} }) {
+      const { template, spec, css, js } = await loader.load(filename);
+      loader.validate(spec, { props, slots });
+      const defaults = {};
+      for (const [key, info] of Object.entries(spec.props || {})) {
+        if (info.default !== undefined) defaults[key] = info.default;
+      }
+      const compiled = Twig.twig({ data: template, path: filename });
+      const html = compiled.render({ ...defaults, ...props, slots });
+      return { html, css, js };
     },
   };
 }

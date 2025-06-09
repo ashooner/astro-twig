@@ -9,21 +9,6 @@ export default function astroTwig(options = {}) {
   } = options;
 
   const loader = new DrupalTwigLoader({ componentRoots, lookupPaths });
-
-  Twig.Templates.registerLoader('drupal', async function (location, params, callback, errorCallback) {
-    try {
-      const data = await loader.load(location, params.path);
-      params.data = data;
-      params.path = location;
-      const parser = this.parsers[params.parser] || this.parser.twig;
-      const template = parser.call(this, params);
-      if (typeof callback === 'function') callback(template);
-      return template;
-    } catch (err) {
-      if (typeof errorCallback === 'function') errorCallback(err);
-      throw err;
-    }
-  });
   return {
     name: 'astro-twig',
     hooks: {
@@ -38,7 +23,7 @@ export default function astroTwig(options = {}) {
     },
     async render({ filename, data }) {
       const tpl = await loader.load(filename);
-      const compiled = Twig.twig({ data: tpl, path: filename, method: 'drupal' });
+      const compiled = Twig.twig({ data: tpl, path: filename });
       return compiled.render(data);
     },
   };

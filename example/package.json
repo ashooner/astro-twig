@@ -1,0 +1,9 @@
+{
+  "name": "astro-site",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "astro": "^5.9.2",
+    "astro-twig": "file:.."
+  }
+}
